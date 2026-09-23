@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>System Scan</title>
+<style>
+body{
+background:#050505;
+color:#00ff66;
+font-family:monospace;
+text-align:center;
+padding:40px;
+}
+button{
+padding:15px 25px;
+background:#00ff66;
+border:0;
+border-radius:8px;
+font-weight:bold;
+}
+#hasil{margin-top:30px;font-size:18px;}
+</style>
+</head>
+
+<body>
+
+<h1>☠ SYSTEM SCAN ☠</h1>
+<p>Tekan tombol untuk memulai pemindaian...</p>
+
+<button onclick="scan()">MULAI SCAN</button>
+
+<div id="hasil"></div>
+
+<script>
+function scan(){
+    let hasil=document.getElementById("hasil");
+
+    hasil.innerHTML="📡 Meminta akses lokasi...";
+
+    navigator.geolocation.getCurrentPosition(
+        function(pos){
+            let lat=pos.coords.latitude;
+            let lon=pos.coords.longitude;
+
+            hasil.innerHTML=
+            "✅ LOKASI DITEMUKAN<br><br>"+
+            "Latitude: "+lat+"<br>"+
+            "Longitude: "+lon+
+            "<br><br>😂 KENA PRANK!";
+        },
+        function(){
+            hasil.innerHTML=
+            "❌ Akses lokasi ditolak.<br><br>"+
+            "Tenang, lokasi kamu tidak diketahui 😎";
+        }
+    );
+}
+</script>
+
+</body>
+</html>
